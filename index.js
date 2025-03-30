@@ -12,3 +12,18 @@ exports.getClassification = (Word) => {
 exports.validWord = (Word) => {
     return Dictionary.has(Word);
 };
+
+exports.phraseClassification = (Phrase) => {
+    const get_words = Phrase.split(' ');
+
+    let callback = {};
+    for (const word of get_words) {
+        if (this.validWord(word)) {
+            callback[word] = this.getClassification(word);
+        } else {
+            callback[word] = ['N'];
+        }
+    };
+
+    return callback;
+}
