@@ -26,4 +26,9 @@ exports.phraseClassification = (Phrase) => {
     };
 
     return callback;
+};
+
+exports.getClassifiedWords = (Classification) => {
+    const getArray = Array.from(map.entries()).filter(([palavra, classes]) => classes.includes(Classification)).map(([palavra]) => palavra);
+    return getArray;
 }
