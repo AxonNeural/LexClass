@@ -1,5 +1,5 @@
 const fs = require('fs');
-const load_dictionary = fs.readFileSync('./Dictionary.json', { encoding: 'utf-8' });
+const load_dictionary = fs.readFileSync('../LexClass/Dictionary.json', { encoding: 'utf-8' });
 const parse_dic = JSON.parse(load_dictionary);
 
 const Dictionary = new Map(parse_dic);
@@ -18,17 +18,14 @@ exports.phraseClassification = (Phrase) => {
 
     let callback = {};
     for (const word of get_words) {
-        if (this.validWord(word)) {
-            callback[word] = this.getClassification(word);
-        } else {
-            callback[word] = ['N'];
-        }
+        callback[word] = [];
+        if (this.validWord(word)) callback[word] = this.getClassification(word);
     };
 
     return callback;
 };
 
 exports.getClassifiedWords = (Classification) => {
-    const getArray = Array.from(map.entries()).filter(([palavra, classes]) => classes.includes(Classification)).map(([palavra]) => palavra);
+    const getArray = Array.from(Dictionary.entries()).filter(([palavra, classes]) => classes.includes(Classification)).map(([palavra]) => palavra);
     return getArray;
-}
+};
