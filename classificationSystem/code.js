@@ -25,10 +25,11 @@ function get_classifications(Class) {
     let callback = [];
     while (i !== class_list.length) {
         let get_comparator = class_list[i];
-        if (get_comparator === "+Pr") get_comparator = "NAME";
         if (Class.includes(get_comparator)) {
-            callback.push(get_comparator);
             Class = Class.replace(get_comparator, '');
+            
+            if (get_comparator === "+Pr") get_comparator = "NAME";
+            callback.push(get_comparator);
         };
 
         i++;
